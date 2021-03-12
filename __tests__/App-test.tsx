@@ -7,11 +7,9 @@ import React from 'react';
 import App from '../App';
 
 // Note: test renderer must be required after react-native.
-import {render, cleanup} from '@testing-library/react-native';
+import {render} from '@testing-library/react-native';
 
 describe('App', () => {
-  afterEach(cleanup);
-
   it('renders correctly', () => {
     const {getByText} = render(<App />);
     expect(getByText('Step One')).toBeTruthy();
