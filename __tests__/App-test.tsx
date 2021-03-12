@@ -21,6 +21,6 @@ describe('App', () => {
     const add = (num1: number) => {
       return num1 * 2;
     };
-    expect(add('2')).toBe(4);
+    expect(add(2)).toBe(4);
   });
 });
