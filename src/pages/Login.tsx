@@ -14,11 +14,14 @@ interface ILoginForm {
   password: string;
 }
 
-const Login = () => {
+interface LoginFormProps {
+  onLogin: ({username, password}: ILoginForm) => void;
+}
+
+const Login = ({onLogin}: LoginFormProps) => {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data: ILoginForm) => {
-    Alert.alert(data.username, data.password);
-    console.log(data);
+    onLogin(data);
   };
 
   return (
