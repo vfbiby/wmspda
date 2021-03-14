@@ -11,17 +11,16 @@ describe('Login page', () => {
     expect(queryByText('Password is required!')).toBeFalsy();
   });
 
-  it('should display required error while username is invalid', async () => {
+  it('should display required error while username and password is invalid', async () => {
     //Given we have a form
-    const {getByPlaceholderText, getByText, toJSON} = render(<Login />);
+    const {getByText} = render(<Login />);
     //When we don't type a username and click login button
-    fireEvent.changeText(getByPlaceholderText('Password'), 'password');
     //Then an alert should display to tell us to type a username for logining
     fireEvent.press(getByText('Submit'));
 
-    await waitFor(() =>
-      expect(getByText('Username is required!')).toBeTruthy(),
-    );
-    expect(toJSON()).toMatchSnapshot();
+    await waitFor(() => {
+      expect(getByText('Username is required!')).toBeTruthy();
+      expect(getByText('Password is required!')).toBeTruthy();
+    });
   });
 });
