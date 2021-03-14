@@ -1,9 +1,10 @@
 // jest.config.js
-const { defaults: tsjPreset } = require('ts-jest/presets')
+const {defaults: tsjPreset} = require('ts-jest/presets');
 
 module.exports = {
   ...tsjPreset,
   preset: 'react-native',
+  //preset: '@testing-library/react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
     ...tsjPreset.transform,
@@ -17,4 +18,4 @@ module.exports = {
   // This is the only part which you can keep
   // from the above linked tutorial's config:
   cacheDirectory: '.jest/cache',
-}
+};
