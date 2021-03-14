@@ -15,9 +15,8 @@ describe('Login page', () => {
     //Given we have a form
     const {getByText} = render(<Login />);
     //When we don't type a username and click login button
-    //Then an alert should display to tell us to type a username for logining
     fireEvent.press(getByText('Submit'));
-
+    //Then an alert should display to tell us to type a username for logining
     await waitFor(() => {
       expect(getByText('Username is required!')).toBeTruthy();
       expect(getByText('Password is required!')).toBeTruthy();

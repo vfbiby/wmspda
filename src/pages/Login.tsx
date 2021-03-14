@@ -17,7 +17,7 @@ interface ILoginForm {
 const Login = () => {
   const {control, handleSubmit, errors} = useForm();
   const onSubmit = (data: ILoginForm) => {
-    Alert.alert(data.username);
+    Alert.alert(data.username, data.password);
     console.log(data);
   };
 
