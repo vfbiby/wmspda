@@ -3,11 +3,11 @@ import {
   Text,
   View,
   TextInput,
-  Alert,
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
+import tw from 'tailwind-rn';
 
 interface ILoginForm {
   username: string;
@@ -25,14 +25,22 @@ const Login = ({onLogin}: LoginFormProps) => {
   };
 
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={tw('')}>
+      <View style={tw('p-2')}>
+        <View style={tw('flex flex-row')}>
+          <Text>Username:</Text>
+          {errors.username && (
+            <Text style={tw('ml-2')}>Username is required!</Text>
+          )}
+        </View>
         <Controller
           control={control}
           render={({onChange, onBlur, value}) => (
             <TextInput
               onBlur={onBlur}
               placeholder="Username"
+              autoCapitalize="none"
+              style={tw('p-4 my-2 border border-red-200')}
               onChangeText={(value) => onChange(value)}
               value={value}
             />
@@ -41,14 +49,21 @@ const Login = ({onLogin}: LoginFormProps) => {
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.username && <Text>Username is required!</Text>}
 
+        <View style={tw('flex flex-row')}>
+          <Text>Password:</Text>
+          {errors.password && (
+            <Text style={tw('ml-2')}>Password is required!</Text>
+          )}
+        </View>
         <Controller
           control={control}
           rules={{required: true}}
           render={({onChange, onBlur, value}) => (
             <TextInput
               onBlur={onBlur}
+              style={tw('p-4 my-2 border border-red-200')}
+              secureTextEntry={true}
               placeholder="Password"
               onChangeText={(value) => onChange(value)}
               value={value}
@@ -57,10 +72,11 @@ const Login = ({onLogin}: LoginFormProps) => {
           name="password"
           defaultValue=""
         />
-        {errors.password && <Text>Password is required!</Text>}
 
-        <TouchableOpacity onPress={handleSubmit(onSubmit)}>
-          <Text>Submit</Text>
+        <TouchableOpacity
+          style={tw('bg-gray-200 flex justify-center items-center my-2')}
+          onPress={handleSubmit(onSubmit)}>
+          <Text style={tw('p-5')}>Submit</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
