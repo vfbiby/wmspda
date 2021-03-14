@@ -1,6 +1,5 @@
-import 'react-native';
+import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import React from 'react';
-import {render, fireEvent, waitFor, act} from '@testing-library/react-native';
 import Login from './Login';
 
 describe('Login page', () => {
@@ -14,16 +13,15 @@ describe('Login page', () => {
 
   it('should display required error while username is invalid', async () => {
     //Given we have a form
-    const {getByPlaceholderText, getByText} = render(<Login />);
+    const {getByPlaceholderText, getByText, toJSON} = render(<Login />);
     //When we don't type a username and click login button
-    act(() => {
-      fireEvent.changeText(getByPlaceholderText('Password'), 'password');
-      //Then an alert should display to tell us to type a username for logining
-      fireEvent.press(getByText('Submit'));
-    });
-    await waitFor(() => {
-      expect(getByText('Submit')).toBeTruthy();
-      expect(getByText('Username is required!')).toBeTruthy();
-    });
+    fireEvent.changeText(getByPlaceholderText('Password'), 'password');
+    //Then an alert should display to tell us to type a username for logining
+    fireEvent.press(getByText('Submit'));
+
+    await waitFor(() =>
+      expect(getByText('Username is required!')).toBeTruthy(),
+    );
+    expect(toJSON()).toMatchSnapshot();
   });
 });
