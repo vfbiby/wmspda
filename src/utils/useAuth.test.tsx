@@ -18,4 +18,11 @@ describe('useAuth', () => {
     const {result} = renderHook(() => useAuth(), {wrapper});
     expect(result.current?.user.name).toBe('vf');
   });
+
+  it('should thorw an error while useAuth is not wrappered by authContext', function () {
+    const {result} = renderHook(() => useAuth());
+    expect(result.error).toEqual(
+      Error('useAuth must be used within a AuthProvider'),
+    );
+  });
 });
