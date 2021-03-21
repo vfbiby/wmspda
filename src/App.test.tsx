@@ -5,17 +5,17 @@ import {App} from './App';
 
 describe('App', () => {
   it('should display login page if user is not logined', () => {
-    const {getByText, getByRole} = render(<App />);
-    expect(getByText('Username')).toBeTruthy();
-    expect(getByText('Password')).toBeTruthy();
-    expect(getByRole('button')).toBeTruthy();
+    const {getByText} = render(<App />);
+    expect(getByText('Username:')).toBeTruthy();
+    expect(getByText('Password:')).toBeTruthy();
+    expect(getByText('Submit')).toBeTruthy();
   });
 
   it('should display home page if user is logined', async () => {
-    const {getByText, getByPlaceholderText, getByRole} = render(<App />);
+    const {getByText, getByPlaceholderText} = render(<App />);
     fireEvent.changeText(getByPlaceholderText('Username'), 'vfbiby');
     fireEvent.changeText(getByPlaceholderText('Password'), 'bb');
-    fireEvent.press(getByRole('button'));
+    fireEvent.press(getByText('Submit'));
     await waitFor(() => {
       expect(getByText('15336551131')).toBeTruthy();
     });

@@ -9,7 +9,7 @@ import {
 import {useForm, Controller} from 'react-hook-form';
 import tw from 'tailwind-rn';
 
-interface ILoginForm {
+export interface ILoginForm {
   username: string;
   password: string;
 }

@@ -1,8 +1,14 @@
 import React, {useState} from 'react';
 import {View, Text, Button, TextInput} from 'react-native';
+import Login, {ILoginForm} from './pages/Login';
 
 export const App = () => {
   const [isLogin, setIsLogin] = useState(false);
+
+  const handleLogin = (user: ILoginForm) => {
+    !!user;
+    setIsLogin(true);
+  };
 
   return isLogin ? (
     <View>
@@ -10,16 +16,7 @@ export const App = () => {
     </View>
   ) : (
     <View>
-      <Text>Username</Text>
-      <TextInput onChangeText={() => {}} placeholder="Username" />
-      <Text>Password</Text>
-      <TextInput onChangeText={() => {}} placeholder="Password" />
-      <Button
-        title="Submit"
-        onPress={() => {
-          setIsLogin(true);
-        }}
-      />
+      <Login onLogin={handleLogin} />
     </View>
   );
 };
