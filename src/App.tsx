@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Button, TextInput} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import Login, {ILoginForm} from './pages/Login';
 
 export const App = () => {
@@ -11,9 +11,11 @@ export const App = () => {
   };
 
   return isLogin ? (
-    <View>
-      <Text>15336551131</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text>15336551131</Text>
+      </View>
+    </SafeAreaView>
   ) : (
     <View>
       <Login onLogin={handleLogin} />
