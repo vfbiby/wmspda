@@ -4,11 +4,13 @@ import {render, fireEvent, waitFor} from '@testing-library/react-native';
 import {App} from './App';
 
 describe('App', () => {
-  it('should display login page if user is not logined', () => {
+  it('should display login page if user is not logined', async () => {
     const {getByText} = render(<App />);
-    expect(getByText('Username:')).toBeTruthy();
-    expect(getByText('Password:')).toBeTruthy();
-    expect(getByText('Submit')).toBeTruthy();
+    await waitFor(() => {
+      expect(getByText('Username:')).toBeTruthy();
+      expect(getByText('Password:')).toBeTruthy();
+      expect(getByText('Submit')).toBeTruthy();
+    });
   });
 
   it('should display home page if user is logined', async () => {
