@@ -19,7 +19,7 @@ describe('App', () => {
     fireEvent.changeText(getByPlaceholderText('Password'), 'bb');
     fireEvent.press(getByText('Submit'));
     await waitFor(() => {
-      expect(getByText('15336551131')).toBeTruthy();
+      expect(getByText(/15336551131/i)).toBeTruthy();
     });
   });
 });
