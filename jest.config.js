@@ -5,9 +5,12 @@ module.exports = {
   ...tsjPreset,
   preset: 'react-native',
   //preset: '@testing-library/react-native',
-  setupFiles: ['./jest-setup.js'],
+  setupFiles: [
+    './jest-setup.js',
+    './node_modules/react-native-gesture-handler/jestSetup',
+  ],
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|@react-native-community|@react-navigation)',
+    'node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)',
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
