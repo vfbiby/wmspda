@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import Login, {ILoginForm} from './screens/login/Login';
-import {HomeScreen} from './screens/home/home-screen';
+import {HomeNavigator} from './navigation/home-navigation';
+import {NavigationContainer} from '@react-navigation/native';
 
 export const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -12,7 +13,9 @@ export const App = () => {
   };
 
   return isLogin ? (
-    <HomeScreen />
+    <NavigationContainer>
+      <HomeNavigator />
+    </NavigationContainer>
   ) : (
     <View>
       <Login onLogin={handleLogin} />
