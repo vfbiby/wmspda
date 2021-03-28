@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, SafeAreaView} from 'react-native';
-import Login, {ILoginForm} from './pages/Login';
+import Login, {ILoginForm} from './screens/login/Login';
 import unmock from 'unmock'; // ES6
 
 unmock.on();
